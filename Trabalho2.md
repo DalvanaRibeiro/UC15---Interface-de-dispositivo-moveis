@@ -7,8 +7,7 @@ Você foi contratado por um **consultório médico** para desenvolver um **aplic
 O cliente deseja um aplicativo moderno, funcional e simples de usar. Para iniciar o projeto, ele solicitou a criação das seguintes **telas essenciais**:
 
 
-![trab2](https://github.com/user-attachments/assets/56693077-02d7-46c4-afc3-947cfe06b686)
-
+https://www.canva.com/design/DAGp_isWMoA/e49qOJm4U29pBUBmfAKBIA/edit?utm_content=DAGp_isWMoA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 > **Sua missão:** com base nas telas acima, **construa o aplicativo** em React Native com navegação funcional entre as telas.
 
