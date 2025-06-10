@@ -13,7 +13,7 @@ https://www.canva.com/design/DAGp_isWMoA/e49qOJm4U29pBUBmfAKBIA/edit?utm_content
 
 Você pode usar ferramentas como:
 - React Expo Routes
-- Componentes estilizados com StyleSheet ou Styled Components
+- Componentes estilizados com StyleSheet baseado em componentes Components
 
 ---
 
