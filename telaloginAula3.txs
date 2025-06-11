@@ -1,0 +1,84 @@
+import React, { useState } from 'react';
+import { 
+  View, 
+  TextInput, 
+  TouchableOpacity, 
+  Text, 
+  Alert,
+  KeyboardAvoidingView,
+  Platform
+} from 'react-native';
+
+export default function LoginScreen() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleLogin() {
+    if (!username || !password) {
+      Alert.alert('Erro', 'Por favor, preencha usuário e senha.');
+    } else {
+      Alert.alert('Sucesso', `Usuário: ${username}\nSenha: ${password}`);
+     
+    }
+  }
+
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#e0f2f1',
+        padding: 20,
+      }}
+    >
+      <View style={{ width: '100%' }}>
+        <TextInput
+          placeholder="Usuário"
+          value={username}
+          onChangeText={setUsername}
+          style={{
+            backgroundColor: '#fff',
+            padding: 12,
+            marginBottom: 12,
+            borderRadius: 8,
+            fontSize: 16,
+            borderWidth: 1,
+            borderColor: '#4caf50',
+          }}
+          autoCapitalize="none"
+          keyboardType="default"
+        />
+        <TextInput
+          placeholder="Senha"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          style={{
+            backgroundColor: '#fff',
+            padding: 12,
+            marginBottom: 20,
+            borderRadius: 8,
+            fontSize: 16,
+            borderWidth: 1,
+            borderColor: '#4caf50',
+          }}
+        />
+        <TouchableOpacity
+          onPress={handleLogin}
+          style={{
+            backgroundColor: '#4caf50',
+            paddingVertical: 14,
+            borderRadius: 8,
+            alignItems: 'center',
+          }}
+        >
+          <Text style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>
+            Entrar
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </KeyboardAvoidingView>
+  );
+}
