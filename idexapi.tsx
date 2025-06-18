@@ -1,133 +1,121 @@
-// Importa hooks useEffect e useState do React para gerenciar estado e ciclo de vida
-import { useEffect, useState } from 'react';
-// Importa componentes básicos do React Native para construir a interface
-import { View, Text, FlatList, StyleSheet, Pressable, TextInput, ActivityIndicator } from 'react-native';
-// Importa useRouter do Expo Router para navegação entre telas
-import { useRouter } from 'expo-router';
+// Importando hooks
+import{useEffect, useState} from 'react'
+import{ View, Text, FlatList, StyleSheet, Pressable, TextInput, ActivityIndicator} from 'react-native'
+import { useRouter } from 'expo-router'
 
 // Define o tipo do objeto Usuario com os campos que usaremos
 type Usuario = {
-  id: number;    // ID numérico único do usuário
-  name: string;  // Nome do usuário
-};
-
-// Componente principal da tela de busca de usuários
-export default function TelaBusca() {
+  id: number 
+  name: string
+}
+// Componente principal da tela de busca dos usuários
+export default function TelaBusca(){
   // Estado para armazenar a lista de usuários obtidos da API
-  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+  const [usuario, setUsuario] = useState<Usuario[]>([])
   // Estado para armazenar o texto digitado no filtro de busca
-  const [filtro, setFiltro] = useState('');
+  const[filtro, setFiltro] = useState('')
   // Estado que indica se os dados ainda estão carregando
-  const [carregando, setCarregando] = useState(true);
-  // Hook do Expo Router para navegar para outras telas
-  const router = useRouter();
-
+  const[carregando, setCarregando] = useState(true)
+  // Hook do Expo Router para navegar entre telas
+  const router = useRouter()
   // Função para buscar os usuários na API externa
   const buscarUsuarios = () => {
-    setCarregando(true); // Marca o início do carregamento
-    fetch('https://jsonplaceholder.typicode.com/users') // Faz requisição para a API
-      .then(res => res.json())  // Converte a resposta para JSON
-      .then(dados => {
-        setUsuarios(dados);  // Atualiza o estado com a lista de usuários recebida
-        setCarregando(false); // Finaliza o carregamento
-      });
-  };
-
+    setCarregando(true) // Marca o início do carregamento
+    fetch('https://jsonplaceholder.typicode.com/users') // Faz a requisição para a API
+    .then(res => res.json()) // converte a resposta para JSON
+    .then( dados => {
+      setUsuario(dados) // Atualiza o estado com a lista de usuários recebida
+      setCarregando(false) // Finaliza o carregamento
+    })
+  }
   // useEffect executa a função buscarUsuarios uma vez, ao montar o componente
   useEffect(() => {
-    buscarUsuarios();
-  }, []);
-
-  // Cria uma nova lista filtrando os usuários cujo nome contém o texto digitado (ignora maiúsculas/minúsculas)
-  const usuariosFiltrados = usuarios.filter(u =>
-    u.name.toLowerCase().includes(filtro.toLowerCase())
-  );
-
-  // Se estiver carregando, exibe um indicador e mensagem de carregamento
-  if (carregando) {
-    return (
-      <View style={estilos.container}>
-        {/* Spinner de carregamento com cor azul escuro */}
-        <ActivityIndicator size="large" color="#0D47A1" />
-        {/* Texto informando que os usuários estão sendo carregados */}
-        <Text style={estilos.carregandoTexto}>Carregando usuários...</Text>
-      </View>
-    );
-  }
-
-  // Quando os dados já estiverem carregados, exibe a tela principal
-  return (
+    buscarUsuarios()
+  }, [])
+  // Cria uma nova lista filtrando os usuários cujo o nome contém o texto digitado  (iginorando maiúscula/minúscula)
+  const usuariosFiltrados = usuario.filter( u => u.name.toLocaleLowerCase().includes(filtro.toLocaleLowerCase())
+)
+// Se estiver carregando, exibe um indicador e mensagem de carregamento
+if(carregando){
+  return(
     <View style={estilos.container}>
-      {/* Título da tela com emoji */}
-      <Text style={estilos.titulo}>🔎 Buscar Usuário</Text>
-
-      {/* Campo de texto para digitar o filtro (nome do usuário) */}
-      <TextInput
-        placeholder="Digite um nome"  // Texto que aparece quando o campo está vazio
-        value={filtro}                // Valor atual do campo (estado filtro)
-        onChangeText={setFiltro}      // Atualiza o estado filtro ao digitar
-        style={estilos.input}         // Estilos aplicados ao campo
-        placeholderTextColor="#90CAF9"// Cor do placeholder (texto de dica)
-      />
-
-      {/* Lista que renderiza os usuários filtrados */}
-      <FlatList
-        data={usuariosFiltrados}          // Dados que serão exibidos na lista
-        keyExtractor={item => item.id.toString()} // Chave única para cada item (ID convertido em string)
-        renderItem={({ item }) => (       // Função que renderiza cada item da lista
-          <Pressable
-            onPress={() =>
-              // Ao clicar no usuário, navega para a tela de detalhes enviando o id como parâmetro
-              router.push({
-                pathname: '/(tabs)/screens/usuarioApi',
-                params: { id: item.id.toString() },
-              })
-            }
-            style={estilos.card}          // Estilos do card que envolve o nome do usuário
-          >
-            {/* Texto exibindo o nome do usuário com emoji estrela */}
-            <Text style={estilos.nome}>🌟 {item.name}</Text>
-          </Pressable>
-        )}
-      />
+      {/* Spinner de carregamento com cor azul escuro */}
+      <ActivityIndicator size="large" color="#0D47A1" />
+      {/* Texto informando que os usuários estão sendo carregados */}
+      <Text style={estilos.carregandoTexto}> Carregando usuários...
+        </Text>
     </View>
-  );
+  )
 }
-
-// Definição dos estilos usados no componente, com paleta azul
+// Quando os dados já estiverem carregados, exibe a tela pricipal
+return(
+  <View style={estilos.container}>
+    {/* Título da tela */}
+    <Text style={estilos.titulo}> 🔎 Buscar Usuário </Text>
+    {/* Campo de texto para digitar o filtro (nome do usuário)*/}
+    <TextInput
+    placeholder='Digite um nome' 
+    value={filtro} // Valor atual do campo (estado de filtro)
+    onChangeText={setFiltro}  // Atualizar o estado de filtro ao digitar
+    style={estilos.input}     // Estilos aplicaado ao campo
+    placeholderTextColor="#90CAF9"/>
+    {/* Lista que renderiza os usuários filtrados */}
+    <FlatList
+    data={usuariosFiltrados}  // Dados que serão exibidos na lista
+    keyExtractor={item => item.id.toString()} // Chave única para cada item (ID convertodo em string)
+    renderItem={({item}) => (   // Função que renderiza cada item da lista
+    <Pressable
+    onPress={() =>
+      // Ao clicar no usuário, navega para a tela de detalhes enviando o id como parâmetro
+      router.push({
+        pathname: '/(tabs)/screens/usuarioApi',
+        params: {id: item.id.toString()},
+      })
+    }  
+    style={estilos.card} // Card que envolve o nome do usuário
+    >
+      {/* Texto exibindo o nome do usuário */}
+      <Text style={estilos.nome}> 👶 {item.name}</Text>
+    </Pressable>
+    )}
+    />
+  </View>
+)
+}
+// Definição dos estilos
 const estilos = StyleSheet.create({
   container: {
-    flex: 1,                 // O container ocupa toda a tela disponível
-    padding: 16,             // Espaçamento interno de 16 pontos
-    backgroundColor: '#E3F2FD', // Fundo azul claro para a tela
+    flex: 1,
+    padding:16,
+    backgroundColor: '#E3F2FD',
   },
-  titulo: {
-    fontSize: 20,            // Tamanho da fonte do título
-    fontWeight: 'bold',      // Texto em negrito
-    color: '#0D47A1',        // Azul escuro para o texto do título
-    marginBottom: 10,        // Espaço abaixo do título
+  titulo:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#0D47A1',
+    marginBottom: 10,
   },
-  input: {
-    backgroundColor: '#FFFFFF', // Fundo branco para o campo de texto
-    borderColor: '#64B5F6',     // Borda azul intermediária
-    borderWidth: 1,             // Largura da borda
-    borderRadius: 8,            // Bordas arredondadas
-    padding: 10,                // Espaço interno do campo
-    marginBottom: 16,           // Espaço abaixo do campo
-    color: '#0D47A1',           // Cor do texto digitado (azul escuro)
+  input:{
+    backgroundColor: '#FFFFFF',
+    borderColor: '#64B5F6',
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 16,
+    color: '#0DA7A1',
   },
-  card: {
-    backgroundColor: '#BBDEFB', // Fundo azul suave para os cards dos usuários
-    padding: 12,                // Espaço interno nos cards
-    marginBottom: 10,           // Espaço entre os cards
-    borderRadius: 8,            // Bordas arredondadas dos cards
+  card:{
+    backgroundColor: '#BBDEFB',
+    padding: 12,
+    marginBottom: 10,
+    borderRadius: 8,
   },
-  nome: {
-    fontSize: 18,               // Tamanho da fonte para o nome do usuário
-    color: '#0D47A1',           // Azul escuro para o texto do nome
+  nome:{
+    fontSize: 18,
+    color: '#0D47A1',
   },
-  carregandoTexto: {
-    marginTop: 10,              // Espaço acima do texto de carregamento
-    color: '#0D47A1',           // Azul escuro para o texto do loading
-  },
-});
+  carregandoTexto:{
+    marginTop: 10,
+    color: '#0D47A1',
+  }
+})
