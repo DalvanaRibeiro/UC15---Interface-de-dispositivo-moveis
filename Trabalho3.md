@@ -53,12 +53,13 @@ Permitir que pesquisadores:
 
 ## 🛠️ Tecnologias Utilizadas
 
-| Recurso                | Pacote Expo                   |
-|------------------------|-------------------------------|
-|  Câmera              | `expo-camera`                 |
-|  Galeria              | `expo-media-library`          |
-|  Gravação de Áudio   | `expo-av`                     |
-| Navegação           | `@react-expo-router`    |
+| Recurso                | Pacote Expo                   |  Comando no terminal |
+|------------------------|-------------------------------|------------------------|
+| Iniciar um novo projeto |  `expo`                     |npx create-expo-app@latest
+|  Câmera              | `expo-camera`                 |  npx expo install expo-camera |
+|  Galeria              | `expo-media-library`          | npx expo install expo-image-picker |
+|  Gravação de Áudio   | `expo-av`                     | npx expo install expo-av |
+| Navegação           | `@react-expo-router`    |  npx expo install expo-router | 
 
 
 
