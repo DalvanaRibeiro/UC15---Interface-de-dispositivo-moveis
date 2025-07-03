@@ -1,8 +1,23 @@
 # 🌿 Projeto VERDATA
 
-link: https://www.canva.com/design/DAGrK8Q3h5k/TLmtNyEDEzr00NKLmEroEA/edit?utm_content=DAGrK8Q3h5k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+link do trabalho: https://www.canva.com/design/DAGrK8Q3h5k/TLmtNyEDEzr00NKLmEroEA/edit?utm_content=DAGrK8Q3h5k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+---
+Recursos: https://github.com/DalvanaRibeiro/Animacoes232MSENAC
+
+telaAuldio.tsx
+
+BotaoCamera.tsx
+
+telaAcessarGaleria.tsx
+
+
+
 ---
 
+Imagem Logo: https://cdn-icons-png.flaticon.com/512/11525/11525775.png
+
+
+---
 ## 🎯 Objetivo
 
 Permitir que pesquisadores:
@@ -40,20 +55,12 @@ Permitir que pesquisadores:
 
 | Recurso                | Pacote Expo                   |
 |------------------------|-------------------------------|
-| 📷 Câmera              | `expo-camera`                 |
-| 🖼️ Galeria/Preview     | `expo-media-library`          |
-| 🎙️ Gravação de Áudio   | `expo-av`                     |
-| 🧭 Navegação           | `@react-expo-router`    |
+|  Câmera              | `expo-camera`                 |
+|  Galeria              | `expo-media-library`          |
+|  Gravação de Áudio   | `expo-av`                     |
+| Navegação           | `@react-expo-router`    |
 
 
 
-Recursos: https://github.com/DalvanaRibeiro/Animacoes232MSENAC
-telaAuldio.tsx
 
-telaAcessarGaleria.tsx
-
-BotaoCamera.tsx
-
-Imagem Logo: https://cdn-icons-png.flaticon.com/512/11525/11525775.png
----
 
