@@ -43,7 +43,7 @@ Permitir que pesquisadores:
 | 📷 Câmera              | `expo-camera`                 |
 | 🖼️ Galeria/Preview     | `expo-media-library`          |
 | 🎙️ Gravação de Áudio   | `expo-av`                     |
-| 🧭 Navegação           | `@react-expo`    |
+| 🧭 Navegação           | `@react-expo-router`    |
 
 
 
