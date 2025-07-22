@@ -100,8 +100,9 @@ git pull origin main
 ---
 
 baixar uma branch
+````
 git clone --branch nome-da-branch --single-branch https://github.com/usuario/repositorio.git
-
+````
 ##  Dicas finais
 
 - Cada funcionalidade nova → uma nova branch
